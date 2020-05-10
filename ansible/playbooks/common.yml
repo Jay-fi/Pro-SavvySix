@@ -1,1 +1,26 @@
+---
+- name: Install initial packages
+  host: all
+  remote_user: ansible
+  become: yes 
+  task: 
+    - name: install all initial packages
+      yum: 
+        name: ['man', 'man-pages', 'mlocate', 'vim', 'bind-utils']
 
+        state: lastest
+
+    - name: Install chrony packages
+      yum: 
+        name: chrony
+        state: lastest 
+
+    - name: configure chrony 
+      template: 
+        scr: /ansible/templates/chrony.conf.j2
+        dest: /etc/chrony.conf
+
+    - name: start chronyd
+      service:
+        name: chronyd
+        state: started
