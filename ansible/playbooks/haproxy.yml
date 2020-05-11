@@ -1,3 +1,14 @@
 ---
   - name: Install and configure HAProxy Server
-  
+    host: haproxy
+    remote_user: ansible
+    become: yes
+    task: 
+      - name: Install haproxy 
+        yum: 
+          name: haproxy
+          state: latest
+      - name: Configure haproxy 
+        template: 
+          scr: /ansible/templates/haproxy.cfg.j2
+          dest: /etc/haproxy/haproxy.cfg
