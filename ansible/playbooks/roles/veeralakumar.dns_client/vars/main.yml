@@ -1,0 +1,7 @@
+---
+# vars file for dns-client
+dns_servers:
+  - 192.168.36.12
+  - 192.168.36.13
+  - 192.168.36.14
+search_domain: ziyotek5.local

@@ -1,0 +1,15 @@
+---
+- name: Configure /etc/reslov.conf
+  hosts: pxe
+  remote_user: ansible
+  become: yes 
+  
+
+  vars:
+      dns_servers:
+        - 192.168.36.12
+        - 192.168.36.13
+        - 192.168.36.14
+      search_domain: ziyotek5.local
+  roles:
+      - { role: veeralakumar.dns_client }
