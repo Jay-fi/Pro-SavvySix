@@ -1,23 +1,23 @@
 ---
 - name: Install initial packages
-  host: all
+  hosts: samba
   remote_user: ansible
   become: yes 
-  task: 
+  tasks: 
     - name: install all initial packages
       yum: 
-        name: ['man', 'man-pages', 'mlocate', 'vim', 'bind-utils', 'git', 'python3']
+        name: ['man', 'man-pages', 'mlocate', 'vim', 'bind-utils', 'git', 'python3', 'epel-release']
 
-        state: lastest
+        state: latest
 
     - name: Install chrony packages
       yum: 
         name: chrony
-        state: lastest 
+        state: latest 
 
     - name: configure chrony 
       template: 
-        scr: /ansible/templates/chrony.conf.j2
+        src: /ansible/Pro-SavvySix/ansible/playbooks/templates/chrony.conf.j2
         dest: /etc/chrony.conf
 
     - name: start chronyd
