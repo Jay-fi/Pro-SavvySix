@@ -1,6 +1,6 @@
 ---
 - name: Configure /etc/reslov.conf
-  hosts: pxe
+  hosts: localhost
   remote_user: ansible
   become: yes 
   

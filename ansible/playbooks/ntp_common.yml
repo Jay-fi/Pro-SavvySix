@@ -1,0 +1,12 @@
+---
+- name: Install initial packages
+  hosts: ntp
+
+  remote_user: ansible
+  become: yes 
+  tasks: 
+    - name: install all initial packages
+      yum: 
+        name: ['man', 'man-pages', 'mlocate', 'vim', 'bind-utils', 'git', 'python3', 'epel-release']
+
+        state: latest

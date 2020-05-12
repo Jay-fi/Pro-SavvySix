@@ -1,6 +1,7 @@
 ---
 - name: Install initial packages
-  hosts: lb7
+  hosts: [ mail, pxe, nsw, nsm, lb7, samba, ansible ]
+
   remote_user: ansible
   become: yes 
   tasks: 
