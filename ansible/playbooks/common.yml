@@ -1,6 +1,6 @@
 ---
 - name: Install initial packages
-  hosts: docker
+  hosts: kubem, kubew
 
   remote_user: ansible
   become: yes 

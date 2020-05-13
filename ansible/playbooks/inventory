@@ -74,8 +74,10 @@ dockw502
 [jenkins]
 jenkins501
 
-[kube]
+[kubem]
 kubem501
+
+[kubew]
 kubew501
 kubew502
 

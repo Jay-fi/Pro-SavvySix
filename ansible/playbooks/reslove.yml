@@ -1,6 +1,6 @@
 ---
 - name: Configure /etc/reslov.conf
-  hosts: docker
+  hosts: kubem, kubew
   remote_user: ansible
   become: yes 
   
