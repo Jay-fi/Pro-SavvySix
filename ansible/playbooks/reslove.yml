@@ -1,6 +1,6 @@
 ---
 - name: Configure /etc/reslov.conf
-  hosts: localhost
+  hosts: docker
   remote_user: ansible
   become: yes 
   

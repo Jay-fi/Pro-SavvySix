@@ -1,6 +1,6 @@
 ---
 - name: Install initial packages
-  hosts: [ mail, pxe, nsw, nsm, lb7, samba, ansible ]
+  hosts: docker
 
   remote_user: ansible
   become: yes 

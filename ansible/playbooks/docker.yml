@@ -1,0 +1,12 @@
+---
+- name: Install Docker and PIP
+  hosts: docker
+  remote_user: ansible
+  become: yes
+
+  roles: 
+    # - common.yml
+    # - reslove.yml
+    - geerlingguy.pip
+    - geerlingguy.docker
+    
