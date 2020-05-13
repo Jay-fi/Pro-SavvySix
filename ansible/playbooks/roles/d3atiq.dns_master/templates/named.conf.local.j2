@@ -1,0 +1,32 @@
+{% for k in keys %}
+key {{ k.id }} {
+    algorithm {{ k.algorithm }};
+    secret "{{ k.secret }}";
+};
+{% endfor %}
+
+{% for d in domains %}
+zone "{{ d.domain }}" IN {
+    type master;
+    file "{{ dns.zonedb_dir }}/db.{{ d.domain }}";
+    forwarders { };
+    allow-transfer { {% for s in d.ns.secondary %}{% for host in mappings %}{% if (host.name + '.' + host.domain) == s %}{% if host.addr4 is defined %}{{ host.addr4 }}; {% endif %}{% if host.addr6 is defined %}{{ host.addr6 }}; {% endif %}{%endif%}{% endfor %}{% endfor %}};
+{% if d.updates.allow == true %}
+    allow-update { key {{ d.updates.key }}; };
+{% endif %}
+};
+{% endfor %}
+
+{% for n in networks %}
+zone "{{ '.'.join((n.subnet | ipaddr('network') | ipaddr('revdns')).split('.')[1:-1]) }}" IN {
+    type master;
+    file "{{ dns.zonedb_dir }}/db.{{ '.'.join(((n.subnet | ipaddr('revdns')).split('.'))[1:-3]) }}";
+    forwarders {  };
+    allow-transfer { {% for s in n.rdns.ns.secondary %}{% for host in mappings %}{% if (host.name + '.' + host.domain) == s %}{% if host.addr4 is defined %}{{ host.addr4 }}; {% endif %}{% if host.addr6 is defined %}{{ host.addr6 }}; {% endif %}{%endif%}{% endfor %}{% endfor %}};
+{% if n.rdns.updates.allow == true %}
+    allow-update { key {{ n.rdns.updates.key }}; };
+{% endif %}
+};
+{% endfor %}
+
+

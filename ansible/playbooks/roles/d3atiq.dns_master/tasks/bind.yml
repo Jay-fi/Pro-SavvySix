@@ -1,0 +1,48 @@
+---
+# tasks file for dns-master bind configuration
+
+- name: create bind forward zone databases
+  become: true
+  template: 
+    src: db.fz.j2
+    dest: "{{ dns.zonedb_dir }}/db.{{ item.domain }}"
+    owner: bind
+    group: bind
+    mode: 0640
+    validate: "named-checkzone {{ item.domain }} %s"
+  with_items: "{{ domains }}"
+  notify: reload bind
+
+- name: create bind reverse zone databases
+  become: true
+  template: 
+    src: db.rz.j2
+    dest: "{{ dns.zonedb_dir }}/db.{{ '.'.join(((item.subnet | ipaddr('revdns')).split('.'))[1:-3]) }}"
+    owner: bind
+    group: bind
+    mode: 0640
+    validate: "named-checkzone {{ '.'.join((item.subnet | ipaddr('network') | ipaddr('revdns')).split('.')[1:]) }} %s"
+  with_items: "{{ networks }}"
+  notify: reload bind
+
+- name: create bind local configuration
+  become: true
+  template: 
+    src: named.conf.local.j2
+    dest: "{{ dns.conf_dir }}/named.conf.local"
+    owner: bind
+    group: bind
+    mode: 0640
+    validate: "named-checkconf %s"
+  notify: reload bind
+
+- name: create bind options configuration
+  become: true
+  template: 
+    src: named.conf.options.j2
+    dest: "{{ dns.conf_dir }}/named.conf.options"
+    owner: bind
+    group: bind
+    mode: 0640
+    validate: "named-checkconf %s"
+  notify: reload bind

@@ -1,0 +1,39 @@
+$ORIGIN {{ item.domain }}.
+$TTL {{ item.ttl }}
+@		IN SOA	{{ item.ns.primary }} {{ item.owner }} (
+				{{ item.soa.serial }}    ; serial
+				{{ item.soa.refresh }}    ; refresh
+				{{ item.soa.retry }}    ; retry
+				{{ item.soa.expire }}    ; expire
+				{{ item.soa.minimum }}    ; minimum
+				)
+@		IN	NS	{{ item.ns.primary }}
+{% for s in item.ns.secondary %}
+@		IN	NS	{{ s }}
+{% endfor %}
+{% for m in item.mx %}
+			MX	{{ m }}
+{% endfor %}
+
+{% for recs in item.records %}
+{% for r in recs.entries %}
+			{{ recs.type }}	{{ r }}
+{% endfor %}
+{% endfor %}
+
+{% for alias in item.aliases %}
+{{ alias.name }}			CNAME	{{ alias.target }}
+{% endfor %}
+
+{% for host in mappings %}
+{% if host.domain == (item.domain + '.') %}
+{% if host.addr4 is defined %}
+{{ host.name }}			A	{{ host.addr4 }}
+{% endif %}
+{% if host.addr6 is defined %}
+{{ host.name }}			AAAA	{{ host.addr6 }}
+{% endif %}
+{% endif %}
+{% endfor %}
+
+

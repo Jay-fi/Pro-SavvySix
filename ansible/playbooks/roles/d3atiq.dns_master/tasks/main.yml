@@ -1,0 +1,5 @@
+---
+# tasks file for dns-master
+
+- include_tasks: apt.yml
+- include_tasks: bind.yml

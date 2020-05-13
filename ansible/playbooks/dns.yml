@@ -1,0 +1,6 @@
+---
+- name: Install and Configure DNS
+  hosts: nms501
+  become: true
+  roles: 
+    - { role: d3atiq.dns_master }

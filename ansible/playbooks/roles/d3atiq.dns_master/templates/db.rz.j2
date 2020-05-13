@@ -1,0 +1,23 @@
+$ORIGIN {{ '.'.join((item.subnet | ipaddr('network') | ipaddr('revdns')).split('.')[1:]) }}
+$TTL {{ item.rdns.ttl }}
+@		IN SOA	{{ item.rdns.ns.primary }} {{ item.rdns.owner }} (
+				{{ item.rdns.soa.serial }}    ; serial
+				{{ item.rdns.soa.refresh }}    ; refresh
+				{{ item.rdns.soa.retry }}    ; retry
+				{{ item.rdns.soa.expire }}    ; expire
+				{{ item.rdns.soa.minimum }}    ; minimum
+				)
+@		IN	NS	{{ item.rdns.ns.primary }}
+{% for s in item.rdns.ns.secondary %}
+@		IN	NS	{{ s }}
+{% endfor %}
+
+{% for host in mappings %}
+{% if host.addr4 is defined and host.addr4 | ipaddr(item.subnet) %}
+{{ (host.addr4 | ipaddr('revdns')).split('.')[0] }}			PTR	{{ host.name }}.{{ host.domain }}
+{% endif %}
+{% if host.addr6 is defined and host.addr6 | ipaddr(item.subnet) %}
+{{ (host.addr6  | ipaddr('revdns')).split('.')[0] }}			PTR	{{ host.name }}.{{ host.domain }}
+{% endif %}
+{% endfor %}
+

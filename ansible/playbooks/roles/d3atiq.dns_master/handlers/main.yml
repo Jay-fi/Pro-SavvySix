@@ -1,0 +1,14 @@
+---
+# handlers file for dns-master
+
+- name: reload bind
+  become: true
+  service:
+    name: bind9
+    state: reloaded
+
+- name: start bind
+  become: true
+  service:
+    name: bind9
+    state: started

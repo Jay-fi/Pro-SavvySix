@@ -1,0 +1,10 @@
+---
+# tasks file for dns-master package installation
+
+- name: Install DNS server apt packages
+  become: true
+  apt:
+    update_cache: true
+    name: bind9
+    state: present
+  notify: start bind
