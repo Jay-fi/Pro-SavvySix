@@ -1,0 +1,17 @@
+---
+- name: Install FreeIPA 
+  hosts: ldap
+  remote_user: ansible
+  become: yes
+
+  vars:
+    freeipa_server_admin_password: password
+    freeipa_server_domain: ziyotek5.local
+    freeipa_server_ds_password: password
+    freeipa_server_fqdn: prdx-ldap501.ziyotek5.local
+    freeipa_server_ip: 192.168.36.12
+    freeipa_server_realm: ZIYOTEK5.LOCAL
+    freeipa_server_install_options:
+    - "--domain={{ freeipa_server_domain }}" 
+  roles:
+    - timorunge.freeipa_server
