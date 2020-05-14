@@ -1,6 +1,6 @@
 ---
 - name: Install initial packages
-  hosts: ldap
+  hosts: jenkins
 
   remote_user: ansible
   become: yes 

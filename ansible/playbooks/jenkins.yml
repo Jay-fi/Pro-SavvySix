@@ -1,1 +1,16 @@
-Hello guys
+---
+- name: Install Jenkins box
+  hosts: jenkins
+  remote_user: ansible
+  become: true
+
+  vars:
+    jenkins_hostname: localhost
+    java_packages:
+      - java-1.8.0-openjdk-1.8.0.252.b09-2.el7_8.x86_64
+    
+
+  roles:
+    - geerlingguy.java
+    - geerlingguy.jenkins
+  
