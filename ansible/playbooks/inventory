@@ -25,7 +25,7 @@ samba501
 pxe501
 
 [web7]
-web571 remote_user=ansible
+web571 
 web572
 web573
 
@@ -74,11 +74,11 @@ dockw502
 [jenkins]
 jenkins501
 
-[kubem]
-kubem501
+[kubem] 
+kubem501 kubernetes_role=master
 
-[kubew]
-kubew501
-kubew502
+[kubew] 
+kubew501 kubernetes_role=node
+kubew502 kubernetes_role=node
 
 

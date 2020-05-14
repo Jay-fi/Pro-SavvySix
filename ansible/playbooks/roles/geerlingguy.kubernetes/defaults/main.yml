@@ -30,7 +30,7 @@ kubernetes_pod_network:
   # cni: 'calico'
   # cidr: '192.168.0.0/16'
 
-kubernetes_apiserver_advertise_address: ''
+kubernetes_apiserver_advertise_address: '192.168.36.41:6443'
 kubernetes_version_kubeadm: 'stable-{{ kubernetes_version }}'
 kubernetes_ignore_preflight_errors: 'all'
 
