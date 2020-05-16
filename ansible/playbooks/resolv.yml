@@ -1,6 +1,6 @@
 ---
 - name: Configure /etc/reslov.conf
-  hosts: nfs
+  hosts: web7
   remote_user: ansible
   become: yes 
   

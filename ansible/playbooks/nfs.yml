@@ -1,0 +1,16 @@
+---
+- name: Install intial packages
+  hosts: nfs
+
+  remote_user: ansible
+  become: yes
+  tasks:
+    - name: install nfs packages
+      yum: 
+        name: nfs-utils*
+        state: latest
+
+    - name: create share file
+      command: mkdir /share
+
+    - name: configure 

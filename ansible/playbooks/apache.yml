@@ -1,6 +1,6 @@
 ---
 - name: Install and Configure Apache 
-  hosts: web571
+  hosts: [web572 , web573]
   become: true
   roles:
     - { role: geerlingguy.apache }
