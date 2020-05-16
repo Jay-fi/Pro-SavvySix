@@ -1,3 +1,3 @@
-apache_listen_port: 8080
+apache_listen_port: 80
 apache_vhosts:
-  - {servername: "ziyotek5.local", documentroot: "/var/www/vhosts/example_com"}
+  - {servername: "prdx-web571.ziyotek5.local", documentroot: "/var/www/vhosts/example_com"}
