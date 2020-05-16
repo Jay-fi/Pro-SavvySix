@@ -1,6 +1,6 @@
 ---
 - name: Install initial packages
-  hosts: web7
+  hosts: mail
 
   remote_user: ansible
   become: yes 

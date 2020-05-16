@@ -9,4 +9,5 @@
     # - reslove.yml
     - geerlingguy.pip
     - geerlingguy.docker
+    - geerlingguy.ansible
     

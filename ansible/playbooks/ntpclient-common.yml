@@ -23,11 +23,10 @@
 
     - name: start ntp
       service:
-        name: ntp
+        name: ntpd
         state: started
 
     - name: Stop and disable Chrony 
       service: 
         name: chronyd
-        state: stoped 
-        state: disabled
+        state: stopped 
