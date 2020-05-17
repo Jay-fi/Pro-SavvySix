@@ -1,6 +1,7 @@
 [ntp]
 ntp501
 ntp502
+prdx-ntp501.ziyotek5.local
 
 [nsm]
 nsm501
@@ -12,8 +13,8 @@ nsw502
 [ftp]
 ftp501
 
-#[lb7]
-#lb571
+[lb7]
+lb571
 
 #[lb6]
 #lb561
@@ -24,10 +25,11 @@ ftp501
 [pxe]
 pxe501
 
-[web7]
+#[web7]
 web571 
 web572
 web573
+prdx-web571
 
 [web6]
 web561

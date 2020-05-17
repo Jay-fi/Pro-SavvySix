@@ -24,9 +24,9 @@ defaults
         clitimeout 50000
         srvtimeout 50000
 {% else %}
-        timeout connect 5000
-        timeout client 50000
-        timeout server 50000
+        timeout connect 25
+        timeout client 50
+        timeout server 50
 {% endif %}
 {% if ansible_os_family == 'Debian' %}
   errorfile 400 /etc/haproxy/errors/400.http
@@ -50,7 +50,7 @@ backend {{ haproxy_backend_name }}
 {% if haproxy_backend_httpchk != '' %}
     option httpchk {{ haproxy_backend_httpchk }}
 {% endif %}
-    cookie SERVERID insert indirect
+
 {% for backend in haproxy_backend_servers %}
-    server {{ backend.name }} {{ backend.address }} cookie {{ backend.name }} check
+    server {{ backend.name }} {{ backend.address }} check
 {% endfor %}
