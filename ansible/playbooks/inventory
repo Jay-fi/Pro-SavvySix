@@ -1,86 +1,120 @@
+[all]
+
 [ntp]
 ntp501
+192.168.36.15
 ntp502
-prdx-ntp501.ziyotek5.local
+192.168.36.11
+ntp503
+192.168.36.44
 
 [nsm]
 nsm501
+192.168.36.12
 
 [nsw]
 nsw501
+192.168.36.13
 nsw502
+192.168.36.14
 
 [ftp]
 ftp501
+192.168.36.16
 
 [lb7]
 lb571
+192.168.36.29
 
-#[lb6]
-#lb561
 
-#[samba]
-#samba501
+[lb6]
+lb561
+192.168.36.28
+
+[samba]
+samba501
+192.168.36.18
 
 [pxe]
 pxe501
+192.168.36.10
 
-#[web7]
-web571 
+[web7]
+web571
+192.168.36.23
 web572
+192.168.36.25
 web573
-prdx-web571
+192.168.36.27
 
 [web6]
 web561
+192.168.36.22
 web562
+192.168.36.24
 web563
+192.168.36.26
 
 [mail]
 mail501
+192.168.36.19
 
-#[db7]
-#db571
+[db7]
+db571
+192.168.36.21
 
-#[db6]
-#db561
+[db6]
+db561
+192.168.36.20
 
 [nfs]
 nfs501
+192.168.36.17
 
-#[nagios]
-#nagios501
+[nagios]
+nagios501
+192.168.36.30
 
 [ldap]
 ldap501
+192.168.36.31
 
 [ansible]
 ansible501
+192.168.36.32
 
+[wiki]
+wiki501
+192.168.36.33
 
-#[wiki]
-#wiki501
+[web]
+web591
+192.168.36.34
+web592
+192.168.36.35
 
-#[web]
-#web591
-#web592
-
-#[lb]
-#lb591
+[lb]
+lb591
+192.168.36.36
 
 [docker]
 dockm501
+192.168.36.37
 dockw501
+192.168.36.38
 dockw502
+192.168.36.39
 
 [jenkins]
 jenkins501
+192.168.36.40
 
-#[kubem] 
-#kubem501 kubernetes_role=master
+[kubem] 
+kubem501 kubernetes_role=master
+192.168.36.41
 
-#[kubew] 
-#kubew501 kubernetes_role=node
-#kubew502 kubernetes_role=node
-
-
+[kubew] 
+kubew501 kubernetes_role=node
+192.168.36.42
+kubew502 kubernetes_role=node
+192.168.36.43

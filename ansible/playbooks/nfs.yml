@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: nfs, ansible
   become_user: root
 
   vars:
@@ -18,19 +18,20 @@
         state=installed
       with_items:
         - nfs-utils
-      tags: all
+      tags: nfs, ansible
 
     ## NFS Server Configuration ##
 
      #ensure mountpoint is created on client machines
+
     - name: copy /etc/exports
       template:
-       src=/share
-       dest=/etc/exports
-       owner-root
-       group=root
-       mode=rw
-      tags: nfs
+       src: templates/exports.j2
+       dest: /etc/exports
+       owner: root
+       group: root
+       mode: 755
+      tags: nfs,copy_export
 
     # ensure nfs service is configured to started
     - name: start the nfs service
@@ -47,20 +48,20 @@
 # ensure mointpoint is created on all client machines
 - name: create a mountpoint for nfs
   file:
-   path={{ nfs_mountpoint }}
-   state=directory
-   mode=rw
-   owner=root
-  tags: all
+    path: /nfs_mountpoint
+    state: directory
+    mode: 755
+    owner: root
+  tags: ansible
 
 # ensure fstab gets updated and filesystem mounted
 - name: update fstab and mount nfs share
   mount:
-   name={{ nfs_mountpoint }}
-   src={{ nfs }}:/{{nfsexport}}
-   fstype=nfs
-   opts=defaults,rw,bg
-   dump=0
-   pasno=2
-   state=mounted
-  tags: all
+   name: "{{ nfs_mountpoint }}"
+   src: "{{ nfs }}:/{{nfsexport}}"
+   fstype: nfs
+   opts: defaults,rw,bg
+   dump: 0
+   pasno: 2
+   state: mounted
+  tags: ansible
