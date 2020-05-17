@@ -1,16 +1,66 @@
 ---
-- name: Install intial packages
-  hosts: nfs
+- hosts: all
+  become_user: root
 
-  remote_user: ansible
-  become: yes
+  vars:
+    nfs_mountpoint: '/nfsmount'
+    nfs: '192.168.36.17'
+    nfsexport: '/share'
+
   tasks:
-    - name: install nfs packages
-      yum: 
-        name: nfs-utils*
-        state: latest
 
-    - name: create share file
-      command: mkdir /share
+    ## NFS Packages Server/Client ##
 
-    - name: configure 
+     # ensure NFS packages are installed
+    - name: check and install nfs packages
+      yum:
+        name={{ item }}
+        state=installed
+      with_items:
+        - nfs-utils
+      tags: all
+
+    ## NFS Server Configuration ##
+
+     #ensure mountpoint is created on client machines
+    - name: copy /etc/exports
+      template:
+       src=/share
+       dest=/etc/exports
+       owner-root
+       group=root
+       mode=rw
+      tags: nfs
+
+    # ensure nfs service is configured to started
+    - name: start the nfs service
+      service:
+       name=nfs
+       state=restarted
+       enabled=yes
+      tags: nfs
+
+
+## NFS Client Configuration ##
+
+
+# ensure mointpoint is created on all client machines
+- name: create a mountpoint for nfs
+  file:
+   path={{ nfs_mountpoint }}
+   state=directory
+   mode=rw
+   owner=root
+  tags: all
+
+# ensure fstab gets updated and filesystem mounted
+- name: update fstab and mount nfs share
+  mount:
+   name={{ nfs_mountpoint }}
+   src={{ nfs }}:/{{nfsexport}}
+   fstype=nfs
+   opts=defaults,rw,bg
+   dump=0
+   pasno=2
+   state=mounted
+  tags: all

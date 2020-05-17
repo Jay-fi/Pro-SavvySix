@@ -12,14 +12,14 @@ nsw502
 [ftp]
 ftp501
 
-[lb7]
-lb571
+#[lb7]
+#lb571
 
-[lb6]
-lb561
+#[lb6]
+#lb561
 
-[samba]
-samba501
+#[samba]
+#samba501
 
 [pxe]
 pxe501
@@ -37,17 +37,17 @@ web563
 [mail]
 mail501
 
-[db7]
-db571
+#[db7]
+#db571
 
-[db6]
-db561
+#[db6]
+#db561
 
 [nfs]
 nfs501
 
-[nagios]
-nagios501
+#[nagios]
+#nagios501
 
 [ldap]
 ldap501
@@ -56,15 +56,15 @@ ldap501
 ansible501
 
 
-[wiki]
-wiki501
+#[wiki]
+#wiki501
 
-[web]
-web591
-web592
+#[web]
+#web591
+#web592
 
-[lb]
-lb591
+#[lb]
+#lb591
 
 [docker]
 dockm501
@@ -74,11 +74,11 @@ dockw502
 [jenkins]
 jenkins501
 
-[kubem] 
-kubem501 kubernetes_role=master
+#[kubem] 
+#kubem501 kubernetes_role=master
 
-[kubew] 
-kubew501 kubernetes_role=node
-kubew502 kubernetes_role=node
+#[kubew] 
+#kubew501 kubernetes_role=node
+#kubew502 kubernetes_role=node
 
 

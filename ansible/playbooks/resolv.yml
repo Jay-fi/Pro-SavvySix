@@ -1,5 +1,5 @@
 ---
-- name: Configure /etc/reslov.conf
+- name: Configure /etc/resolv.conf
   hosts: mail
   remote_user: ansible
   become: yes 

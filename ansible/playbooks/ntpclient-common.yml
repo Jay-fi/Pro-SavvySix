@@ -29,4 +29,4 @@
     - name: Stop and disable Chrony 
       service: 
         name: chronyd
-        state: stopped 
+        state: stopped

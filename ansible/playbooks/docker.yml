@@ -6,8 +6,8 @@
 
   roles: 
     # - common.yml
-    # - reslove.yml
+    # - resolve.yml
     - geerlingguy.pip
     - geerlingguy.docker
     - geerlingguy.ansible
-    
+    - atosatto.docker-swarm 
