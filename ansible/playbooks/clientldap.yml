@@ -1,0 +1,35 @@
+---
+- name: Install and configure LDAP client 
+  hosts: dockm501
+
+  remote_user: ansible
+  become: true 
+  tasks:
+    - name: Install packages
+      yum:
+        name: [ wget, openldap-clients, nss-pam-ldapd, authconfig, epel-release ]
+        state: latest
+
+    - name: Create Directory Cacerts
+      file:
+        path: /etc/openldap/cacerts
+        state: directory
+    
+    - name: Get CA.crt
+      template:
+        src: CA.crt.j2
+        dest: /etc/openldap/cacerts/CA.crt
+
+    - name: Configure ldap.conf
+      template:
+        src: ldap.conf.j2
+        dest: /etc/openldap/ldap.conf
+        backup: yes
+    
+    # - name: Configure authconfig
+    #   template:
+    #     src: authconfig.j2
+    #     dest: /etc/sysconfig/authconfig
+
+    - name: run that command...
+      raw: authconfig --enableldap --enableldapauth --ldapserver=ldap://prdx-ldap501.ziyotek5.local --ldapbasedn="dc=ziyotek5,dc=local" --enableldaptls --update
