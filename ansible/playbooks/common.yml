@@ -1,6 +1,6 @@
 ---
 - name: Install initial packages
-  hosts: mail
+  hosts: samba
 
   remote_user: ansible
   become: yes 

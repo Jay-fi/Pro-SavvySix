@@ -1,6 +1,6 @@
 ---
 - name: Configure /etc/resolv.conf
-  hosts: mail
+  hosts: samba
   remote_user: ansible
   become: yes 
   

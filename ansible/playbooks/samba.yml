@@ -1,0 +1,19 @@
+---
+- name: Install Samba Server and Client 
+  hosts: [jenkins]
+  remote_user: ansible
+  become: yes  
+  roles: 
+    - geerlingguy.samba
+  
+# - name: Configure Samba Clients
+#     template:
+#      src: smb.conf.j2
+#      dest: /etc/samba/smb.conf
+#      backup: yes
+      
+# - name: Create Samba ueser admin
+#   raw: useradd admin
+#   raw: smbpasswd -a admin
+#   raw: password
+#   raw: password
