@@ -1,12 +1,20 @@
 ---
 - name: Install initial packages
-  hosts: ntp
+  hosts: lb6
 
   remote_user: ansible
   become: yes 
   tasks: 
     - name: install all initial packages
       yum: 
-        name: ['man', 'man-pages', 'mlocate', 'vim', 'bind-utils', 'git', 'python3', 'epel-release']
-
+        name: ['man', 'man-pages', 'mlocate', 'vim', 'bind-utils', 'sysstat', 'ntp', 'epel-release']
         state: latest
+    
+    - name: Configure NTP 
+      template:
+        src: ntp.conf.j2
+        dest: /etc/ntp.conf
+
+    # - name: Set NTP to true
+    #   raw: service ntpd start 
+    #   raw: timedatectl set-ntp true

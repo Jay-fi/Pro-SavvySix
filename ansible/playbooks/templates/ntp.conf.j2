@@ -10,7 +10,7 @@ restrict default nomodify notrap nopeer noquery
 # Permit all access over the loopback interface.  This could
 # be tightened as well, but to do so would effect some of
 # the administrative functions.
-restrict 127.0.0.1 
+restrict 127.0.0.1
 restrict ::1
 
 # Hosts on local network are less restricted.
@@ -18,16 +18,17 @@ restrict ::1
 
 # Use public servers from the pool.ntp.org project.
 # Please consider joining the pool (http://www.pool.ntp.org/join.html).
-server 0.centos.pool.ntp.org iburst
-server 1.centos.pool.ntp.org iburst
-server 2.centos.pool.ntp.org iburst
-server 3.centos.pool.ntp.org iburst
+#server 0.centos.pool.ntp.org iburst
+#server 1.centos.pool.ntp.org iburst
+#server 2.centos.pool.ntp.org iburst
+#server 3.centos.pool.ntp.org iburst
+server 192.168.36.44 iburst
 
-#broadcast 192.168.1.255 autokey	# broadcast server
-#broadcastclient			# broadcast client
-#broadcast 224.0.1.1 autokey		# multicast server
-#multicastclient 224.0.1.1		# multicast client
-#manycastserver 239.255.254.254		# manycast server
+#broadcast 192.168.1.255 autokey        # broadcast server
+#broadcastclient                        # broadcast client
+#broadcast 224.0.1.1 autokey            # multicast server
+#multicastclient 224.0.1.1              # multicast client
+#manycastserver 239.255.254.254         # manycast server
 #manycastclient 239.255.254.254 autokey # manycast client
 
 # Enable public key cryptography.
@@ -55,4 +56,4 @@ keys /etc/ntp/keys
 # monlist command when default restrict does not include the noquery flag. See
 # CVE-2013-5211 for more details.
 # Note: Monitoring will not be disabled with the limited restriction flag.
-disable monitor
+disable monito
