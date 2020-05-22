@@ -1,0 +1,14 @@
+---
+- name: Disable Root Login
+  hosts: web571
+  remote_user: ansible
+  become: yes 
+
+  tasks:
+    - name: Run SED command
+      raw: sed -i "s/^\#PermitRootLogin.*/PermitRootLogin no/" /etc/ssh/sshd_config
+    
+    - name: Restart SSHD
+      service:
+        name: sshd
+        state: restarted

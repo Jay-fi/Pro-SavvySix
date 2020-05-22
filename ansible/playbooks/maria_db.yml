@@ -1,0 +1,9 @@
+---
+- name: Install MariaDB 
+  hosts: db7
+
+  remote_user: ansible
+  become: yes
+
+  roles: 
+    - bertvv.mariadb

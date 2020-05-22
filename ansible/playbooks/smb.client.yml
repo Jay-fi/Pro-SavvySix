@@ -1,18 +1,20 @@
 ---
 - name: configure Samba Clients
-  hosts: jenkins
+  hosts: [ web7, web6 ]
   remote_user: ansible
   become: yes 
-  
-  tasks:
-    - name: Configure Samba Clients
-      template:
-        src: smb.conf.j2
-        dest: /etc/samba/smb.conf
-        backup: yes
+  roles:
+    - geerlingguy.samba
+
+
+    # - name: Configure Samba Clients
+    #   template:
+    #     src: smb.conf.j2
+    #     dest: /etc/samba/smb.conf
+    #     backup: yes
       
-    - name: Create Samba ueser admin
-      raw: useradd admin
-      raw: smbpasswd -a admin
-      raw: password
-      raw: password
+    # - name: Create Samba ueser admin
+    #   raw: useradd jacobo
+    #   raw: smbpasswd -a jacobo
+    #   raw: password
+    #   raw: password 

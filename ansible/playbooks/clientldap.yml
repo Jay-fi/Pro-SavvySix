@@ -1,6 +1,6 @@
 ---
 - name: Install and configure LDAP client 
-  hosts: ntp503
+  hosts: web573
   remote_user: ansible
   become: true 
   tasks:

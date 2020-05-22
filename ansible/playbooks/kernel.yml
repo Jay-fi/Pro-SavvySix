@@ -1,0 +1,7 @@
+---
+- name: Install new kernel version and update (reboot)
+  hosts: web573
+  remote_user: ansible
+  become: true  
+  roles:
+     - role: accelize.linux_kernel

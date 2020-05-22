@@ -1,6 +1,6 @@
 ---
 - name: Configure /etc/resolv.conf
-  hosts: ntp503
+  hosts: web573
   remote_user: ansible
   become: yes 
   

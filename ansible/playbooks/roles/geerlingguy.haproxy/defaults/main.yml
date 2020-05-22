@@ -6,7 +6,7 @@ haproxy_group: haproxy
 
 # Frontend settings.
 haproxy_frontend_name: 'hafrontend'
-haproxy_frontend_bind_address: '192.168.36.29'
+haproxy_frontend_bind_address: '192.168.36.28'
 haproxy_frontend_port: 80
 haproxy_frontend_mode: 'http'
 
@@ -19,11 +19,11 @@ haproxy_backend_httpchk: 'HEAD / HTTP/1.1\r\nHost:localhost'
 # List of backend servers.
 haproxy_backend_servers: 
     - name: app1
-      address: 192.168.36.23:80
+      address: 192.168.36.22:80
     - name: app2
-      address: 192.168.36.25:80
+      address: 192.168.36.24:80
     - name: app3 
-      address: 192.168.36.27:80
+      address: 192.168.36.26:80
 
 # Extra global vars (see README for example usage).
 haproxy_global_vars: []

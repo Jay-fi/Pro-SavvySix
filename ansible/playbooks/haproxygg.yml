@@ -1,6 +1,6 @@
 ---
   - name: Install HAproxy and configure
-    hosts: lb7
+    hosts: lb6
     remote_user: ansible
     become: yes 
     roles: 

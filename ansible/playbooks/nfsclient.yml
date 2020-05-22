@@ -1,0 +1,39 @@
+---
+- name: Install and configure NFS on Clients
+  hosts: ansible
+  remote_user:
+  become: yes
+
+  vars:
+    nfs_mountpoint: '/share'
+    nfs: 'nfs501'
+    nfsexport: 'share'
+
+  tasks:
+    - name: Install NFS packages
+      yum: 
+        name: nfs-utils
+        state: latest
+
+    - name: Start the nfs service
+      service:
+        name=nfs
+        state=restarted
+        enabled=yes
+
+    - name: Create a mountpoint for nfs
+      file:
+        path: /share
+        state: directory
+        mode: 777
+        owner: root
+
+    - name: Update fstab and mount nfs share
+      mount:
+        name: "{{ nfs_mountpoint }}"
+        src: "{{ nfs }}:/{{nfsexport}}"
+        fstype: nfs
+        opts: defaults,rw,bg
+        dump: 0
+        passno: 0
+        state: mounted

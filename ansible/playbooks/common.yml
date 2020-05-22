@@ -1,6 +1,6 @@
 ---
 - name: Install initial packages
-  hosts: lb6
+  hosts: web573
 
   remote_user: ansible
   become: yes 
